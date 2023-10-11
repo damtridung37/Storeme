@@ -1,0 +1,7 @@
+﻿@model RemoveFromWishlistBindingModel
+
+<form id="wishlistForm" asp-action="RemoveFromWishlist" asp-controller="Wishlist">
+    <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+    <button class="btn btn-sm btn-outline-secondary fw-bold" type="submit"><i class="bi bi-heartbreak"></i></button>
+</form>
+

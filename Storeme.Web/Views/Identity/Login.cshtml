@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+
+<div class="container col-xl-10 col-xxl-10 px-2 py-5">
+    <div class="row align-items-center g-lg-2 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">Please, sign in</h1>
+            <p class="col-lg-10 fs-5">Enter your credentials to log in your account</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form class="core-container" asp-controller="Identity" asp-action="Login" method="post" class="core-container">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Username" class="form-control rounded-3" id="floatingInput" placeholder="Username">
+                        <label asp-for="Username" for="floatingInput"></label>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                        <label asp-for="Password" for="floatingPassword"></label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign in</button>
+                </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

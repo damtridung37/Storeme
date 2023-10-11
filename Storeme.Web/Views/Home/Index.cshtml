@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<StoremeUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <h1>Welcome, @UserManager.GetUserName(User) </h1>
+    <p class="lead">
+        <img src="https://todorovbulgaria.com/wp-content/uploads/2019/02/Gaming-Computer-PNG-Transparent-Picture.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="550" height="350" loading="lazy">
+    </p>
+    <p class="lead">
+        Storeme is web application representing online store with intuitive design giving the users best experience throughout the process of exploring, choosing and ordering products.
+    </p>
+
+    <p class="lead">
+        <a asp-action="All" asp-controller="Products" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Shop now</a>
+    </p>
+</div>

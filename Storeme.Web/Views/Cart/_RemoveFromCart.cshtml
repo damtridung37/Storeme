@@ -1,0 +1,9 @@
+﻿@model RemoveFromCartBindingModel
+
+<form id="cartForm" asp-action="RemoveFromCart" asp-controller="Cart">
+    <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+    <button class="btn btn-sm btn-outline-secondary fw-bold" type="submit"><i class="bi bi-bag-dash"></i></button>
+</form>
+
+
+

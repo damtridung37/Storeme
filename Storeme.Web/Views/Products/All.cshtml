@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Storeme.Web.Models.Product.ProductListingViewModel>
+
+<section class="py-1 text-center container">
+    <div class="row py-sm-3">
+        <div class="col-lg-6 col-sm-8 mx-auto">
+            <h3 class="fw-light">Products</h3>
+            <p class="lead text-muted">Here are all available products in the store from the most popular brands and manufacturers in the digital world.</p>
+            <p>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Add" asp-controller="Products" class="btn btn-secondary fw-bold border-white bg-white my-2">Add product</a>
+
+                }
+                <form asp-controller="Products" asp-action="All" class="core-container">
+                    <button type="button" class="btn btn-secondary fw-bold border-white bg-white my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Filters
+                    </button>
+                    <a class="btn btn-secondary fw-bold border-white bg-white my-2" asp-controller="Products" asp-action="All">Reset</a>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Filters</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" placeholder="Brand" name="brand" id="fbrand" aria-describedby="basic-addon2">
+                                        <label for="fbrand">Brand</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-control" asp-items="ViewBag.Categories" name="category" id="floatingCategory" placeholder="category">
+                                            <label class="control-label" for="floatingCategory">Category</label>
+                                        </select>
+                                        <label for="fcategory">Category</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" min="1" max="999999" id="fpricefrom" placeholder="Price From" name="priceFrom" aria-describedby="basic-addon2">
+                                        <label for="fpricefrom">Price From</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" min="1" max="999999" id="fpriceto" placeholder="Price To" name="priceTo" aria-describedby="basic-addon2">
+                                        <label for="fpriceto">Price To</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Apply Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </p>
+        </div>
+    </div>
+</section>
+<div class="row row-cols-1 row-cols-xl-10 align-items-stretch g-4 py-5">
+    @foreach (var product in Model)
+    {
+        <div class="col">
+            <div class="card card-cover h-100 overflFow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('@product.ImageUrl');background-size: 130px 130px;">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                    <ul class="d-flex list-unstyled mt-auto">
+                        <li class="me-auto">
+                            <small> @product.CategoryTitle </small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>@product.Brand @product.DeviceModel</small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>@product.Price €</small>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="d-flex align-items-center">
+                                @await Html.PartialAsync("~/Views/Cart/_AddToCart.cshtml", new AddToCartBindingModel
+                        {
+                        ProductId = product.Id
+                        })
+                                @await Html.PartialAsync("~/Views/Wishlist/_AddToWishlist.cshtml", new AddToWishlistBindingModel
+                        {
+                        ProductId = product.Id
+                        })
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-action="Update" asp-controller="Products" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary fw-bold"><i class="bi bi-pencil-square"></i></a>
+                                    <a asp-action="Delete" asp-controller="Products" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary fw-bold"><i class="bi bi-x-square"></i></a>
+                                }
+
+                            </li>
+                        }
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary fw-bold">Details</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

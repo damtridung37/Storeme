@@ -1,0 +1,11 @@
+﻿@model AddToCartBindingModel
+
+<form id="cartForm" asp-action="AddToCart" asp-controller="Cart">
+    <input class="prid" type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+    <button class="btn btn-sm btn-outline-secondary fw-bold submit-button" type="submit"><i class="bi bi-bag"></i></button>
+</form>
+
+
+
+
+

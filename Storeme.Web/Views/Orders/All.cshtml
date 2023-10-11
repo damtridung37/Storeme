@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OrderListingViewModel>
+
+<section class="py-1 text-center container">
+    <div class="row py-sm-3">
+        <div class="col-lg-6 col-sm-8 mx-auto">
+            <h3 class="fw-light">Orders</h3>
+            <p class="lead text-muted">Here are all created orders</p>
+        </div>
+    </div>
+</section>
+<div class="row row-cols-1 row-cols-xl-10 align-items-stretch g-4 py-5">
+    @foreach (var order in Model)
+    {
+        <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('@order.Product.ImageUrl');background-size: 130px 130px;">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                    <ul class="d-flex list-unstyled mt-auto">
+                        <li class="me-auto">
+                            <small> @order.CreatedOn.ToString("dddd dd/mm/yyyy") </small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>@order.Product.Brand @order.Product.DeviceModel</small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>@order.Product.Price €</small>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            @order.Quantity pcs
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

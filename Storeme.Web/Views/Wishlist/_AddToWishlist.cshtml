@@ -1,0 +1,7 @@
+﻿@model AddToWishlistBindingModel
+
+<form id="wishlistForm" asp-action="AddToWishlist" asp-controller="Wishlist">
+    <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+    <button class="btn btn-sm btn-outline-secondary fw-bold" type="submit"><i class="bi bi-heart"></i></button>
+</form>
+

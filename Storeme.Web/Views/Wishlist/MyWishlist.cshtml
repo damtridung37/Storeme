@@ -1,0 +1,44 @@
+﻿@model WishlistListingViewModel
+
+<section class="py-1 text-center container">
+    <div class="row py-sm-3">
+        <div class="col-lg-6 col-sm-8 mx-auto">
+            <h3 class="fw-light">Wishlist</h3>
+            <p class="lead text-muted">Here are all products that you have added to your wishlist. You can remove them and add them to your cart.</p>
+        </div>
+    </div>
+</section>
+<div class="row row-cols-1 row-cols-xl-10 align-items-stretch g-4 py-5">
+    @foreach (var item in Model.Items)
+    {
+        <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('@item.Item.Product.ImageUrl');background-size: 130px 130px;">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                    <ul class="d-flex list-unstyled mt-auto">
+                        <li class="me-auto">
+                            <small> @item.Item.Product.CategoryTitle </small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>@item.Item.Product.Brand @item.Item.Product.DeviceModel</small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>@item.Item.Product.Price €</small>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            @await Html.PartialAsync("~/Views/Wishlist/_RemoveFromWishlist.cshtml", new RemoveFromWishlistBindingModel
+                        {
+                        ProductId = item.Item.Product.Id
+                        })
+                            @await Html.PartialAsync("~/Views/Cart/_AddToCart.cshtml", new AddToCartBindingModel
+                        {
+                        ProductId = item.Item.Product.Id
+                        })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

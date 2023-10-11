@@ -1,0 +1,48 @@
+﻿@model Storeme.Web.Models.Product.ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container col-xl-10 col-xxl-10 px-2 py-5">
+    <div class="row align-items-center g-lg-2 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <p class="col-lg-10 fs-5"><img src="@Model.ImageUrl" width="325" /></p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <div>
+                <h4>@Model.CategoryTitle </h4>
+            </div>
+            <br />
+            <div>
+                <h2 class="display-6">@Model.Brand @Model.DeviceModel</h2>
+            </div>
+            <br />
+            <div class="">
+                <p class="text-wrap">@Model.Description</p>
+            </div>
+            <hr />
+            <div>
+                <h5>Price: @Model.Price €</h5>
+            </div>
+            <div>
+                <h5>Warranty: @Model.Warranty years</h5>
+            </div>
+            <div>
+                <h5>Quantity: @Model.Quantity pcs</h5>
+            </div>
+            <hr />
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-action="AddToCartDetails" asp-controller="Cart">
+                    <input type="hidden" asp-for="Id" value="@Model.Id" />
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"><i class="bi bi-bag"></i> Add to Cart</button>
+                </form>
+                <form asp-action="AddToWishlistDetails" asp-controller="Wishlist">
+                    <input type="hidden" asp-for="Id" value="@Model.Id" />
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"><i class="bi bi-heart"></i> Add to Wishlist</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
