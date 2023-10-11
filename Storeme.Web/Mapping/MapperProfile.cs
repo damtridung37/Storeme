@@ -13,7 +13,7 @@ namespace Storeme.Web.Mapping
     public class MapperProfile : Profile
     {
         public MapperProfile()
-        {   //
+        {
             CreateMap<Product, ProductListingViewModel>().ReverseMap();
             CreateMap<Product, ProductUpdateModel>().ReverseMap();
             CreateMap<Product, ProductBindingModel>().ReverseMap();
@@ -34,7 +34,6 @@ namespace Storeme.Web.Mapping
             CreateMap<Order, OrderCreateModel>().ReverseMap();
             //user
             CreateMap<StoremeUser, UserViewModel>().ReverseMap();
-            ////
 
         }
     }
