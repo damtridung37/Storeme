@@ -17,6 +17,7 @@ namespace Storeme.Web.Mapping
             CreateMap<Product, ProductListingViewModel>().ReverseMap();
             CreateMap<Product, ProductUpdateModel>().ReverseMap();
             CreateMap<Product, ProductBindingModel>().ReverseMap();
+            //
             CreateMap<Category, CategoryListingViewModel>().ReverseMap();
             CreateMap<Item, ItemListingViewModel>().ReverseMap();
             CreateMap<Product, ProductDetailsViewModel>().ReverseMap();
